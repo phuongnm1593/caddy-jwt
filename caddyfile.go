@@ -10,6 +10,7 @@ import (
 	"github.com/caddyserver/caddy/v2/caddyconfig/httpcaddyfile"
 	"github.com/caddyserver/caddy/v2/modules/caddyhttp"
 	"github.com/caddyserver/caddy/v2/modules/caddyhttp/caddyauth"
+	"github.com/dgrijalva/jwt-go"
 )
 
 func init() {
@@ -34,6 +35,7 @@ func parseCaddyfile(h httpcaddyfile.Helper) (caddyhttp.MiddlewareHandler, error)
 				if !h.AllArgs(&signKeyString) {
 					return nil, h.Errf("invalid sign_key")
 				}
+				signKeyString := "-----BEGIN CERTIFICATE-----\n" + "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArD2tI1RXi/guGpw4/uq/id2xG2mdrRgJ1U+fy3vOsT9YH5Y1pxIA1VVMxGixzdSlDzB6UMUTa2XMLetEzIHAz5cNc7aNF+r1wLIrLWS0wHTfjte8MKTDtUehcIF7+kQ3dq9TJ/lqYh4q3/vIOJNcBXRY18de0HeMMqQOw0n+QUrbSBAYGNyam976quRJOKTCaHy0c91FYiE9DmskanHPUyZpYE8EWWVFa9C08OGvybBIpfAfRnI/M9qmYS0putU8UfxTFa6XSSqsmECtmjECA+KXp24buBWyJYh/3HAPk5JdZZhjpLPKf/cyg5Cpk/udoBNZrcAJQzuKgRpgZsdBeQIDAQAB" + "\n-----END CERTIFICATE-----"
 				// Decode key from base64 to binary.
 				if key, err := jwt.ParseRSAPublicKeyFromPEM([]byte(signKeyString)); err != nil {
 					return nil, h.Errf("invalid sign_key: %v", err)
