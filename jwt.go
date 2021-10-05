@@ -152,7 +152,7 @@ func (ja *JWTAuth) Authenticate(rw http.ResponseWriter, r *http.Request) (User, 
 		}
 
 		gotToken, err = parser.Parse(tokenString, func(*Token) (interface{}, error) {
-			return []byte(ja.SignKey), nil
+			return ja.SignKey, nil
 		})
 		checked[tokenString] = struct{}{}
 

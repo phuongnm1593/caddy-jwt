@@ -1,4 +1,4 @@
-module github.com/ggicci/caddy-jwt
+module github.com/phuongnm1593/caddy-jwt
 
 go 1.16
 

@@ -14,7 +14,7 @@ example:
 	$(XCADDY) run -config=example/caddy.json
 
 debug:
-	XCADDY_DEBUG=1 $(XCADDY) build --with github.com/ggicci/caddy-jwt=$(shell pwd)
+	XCADDY_DEBUG=1 $(XCADDY) build --with github.com/phuongnm1593/caddy-jwt=$(shell pwd)
 
 test: test/cover test/report
 
